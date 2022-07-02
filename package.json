@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo YoutubePoster By Fongsi",
     "postinstall": "echo YoutubePoster By Fongsi 2",
-    "install": "echo YoutubePoster By Fongsi 3",
+    "install": "echo YoutubePoster By Fongsi 3"
   },
   "repository": {
     "type": "git",
