@@ -126,7 +126,7 @@ class YoutubePoster extends EventEmitter {
                 ChannelDATA
               ),
             };
-            await this.emit("notif", e);
+            await this.emit("notified", e);
             //set the new old vid to the latest send video
             ChannelDATA.oldvid = video.id;
             //push the data in the already sent ones, so it's never repeating again, if a reupload and delete after, etc.
