@@ -1,12 +1,13 @@
 {
   "name": "youtubeposter",
   "version": "3.1.3",
-  "description": "Notify the user or youtube channel that has just uploaded a new video",
+  "description": "An automated Youtube Poster package, with a Database included, which allows you to make it easy to post new Video Uploads or Streams to a Channel, per YT-CHANNEl defineable, fast, relyable, FETCHING ALL CHANNEL DATA AND ALL VIDEOS!",
   "main": "youtubeposter.js",
+  "deprecated": "beta youtube poster by fongsidev",
   "scripts": {
-    "test": "echo YoutubePoster By Fongsi",
-    "postinstall": "echo YoutubePoster By Fongsi 2",
-    "install": "echo YoutubePoster By Fongsi 3"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "echo YoutubePoster By Fongsi",
+    "install": "echo YoutubePoster By Fongsi"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,15 @@
   "bugs": {
     "url": "https://github.com/fongsidev/YoutubePoster/issues"
   },
-  "homepage": "https://github.com/fongsidev/YoutubePoster#readme"
+  "homepage": "https://github.com/fongsidev/YoutubePoster#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "colors": "^1.4.0",
+    "cron": "^1.8.2",
+    "enmap": "^5.8.7",
+    "events": "^3.3.0",
+    "josh": "^1.1.0",
+    "rss-converter": "^1.1.6",
+    "rss-parser": "^3.12.0"
+  }
 }
