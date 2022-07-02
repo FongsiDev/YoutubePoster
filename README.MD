@@ -32,7 +32,7 @@ client.YTP.<Method>(<Options>); //returns -> Promise -> <OBJECT/ARRAY -- CHANNEL
 //The logging is the package doing for you, you just need to use the setChannel() function in order to set the first channel which should get listened to!
 ```
 
-## 📫 **Join our [Discord Server](https://discord.gg/FQGXbypRf8) for Support**
+## 📫 **Join our [Discord Server](https://discord.gg/COO2) for Support**
 
 ***
 
