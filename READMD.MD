@@ -1,15 +1,15 @@
 <div align="center">
   <p>
-    <a href="https://www.npmjs.com/package/YoutubePoster"><img src="https://img.shields.io/npm/v/YoutubePoster.svg?maxAge=3600" alt="NPM version" /></a>
-    <a href="https://www.npmjs.com/package/YoutubePoster"><img src="https://img.shields.io/npm/dt/YoutubePoster.svg?maxAge=3600" alt="NPM downloads" /></a>
+    <a href="https://www.npmjs.com/package/YoutubePoster.js"><img src="https://img.shields.io/npm/v/YoutubePoster.js.svg?maxAge=3600" alt="NPM version" /></a>
+    <a href="https://www.npmjs.com/package/YoutubePoster.js"><img src="https://img.shields.io/npm/dt/YoutubePoster.js.svg?maxAge=3600" alt="NPM downloads" /></a>
   </p>
   <p>
-    <a href="https://nodei.co/npm/YoutubePoster/"><img src="https://nodei.co/npm/YoutubePoster.png?downloads=true&stars=true" alt="npm installnfo" /></a>
+    <a href="https://nodei.co/npm/YoutubePoster.js/"><img src="https://nodei.co/npm/YoutubePoster.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
   </p>
 </div>
 
 
-# **YoutubePoster**
+# **YoutubePoster.js**
 >
 > *This means, that it logs new Videos, or Streams and sends them to a Channel, you can define the Name, Link, User, and more!*
 > *It is very fast and a scraper, so you don't need an API KEY.*
@@ -17,11 +17,11 @@
 
 ## **Installation** 
 ```sh
-npm install youtubeposter@latest
+npm install YoutubePoster.js@latest
 ```
 
 ```js
-const YT = require("youtubeposter");
+const YT = require("YoutubePoster.js");
 //Suggesting to require it once the bot is online, to reduce bugs...
 client.on("ready", () => client.YTP = new YT.YoutubePoster());
 //Send message or data
