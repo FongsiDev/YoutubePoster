@@ -1,10 +1,10 @@
 <div align="center">
   <p>
-    <a href="https://www.npmjs.com/package/YoutubePoster.js"><img src="https://img.shields.io/npm/v/YoutubePoster.js.svg?maxAge=3600" alt="NPM version" /></a>
-    <a href="https://www.npmjs.com/package/YoutubePoster.js"><img src="https://img.shields.io/npm/dt/YoutubePoster.js.svg?maxAge=3600" alt="NPM downloads" /></a>
+    <a href="https://www.npmjs.com/package/youtubeposter.js"><img src="https://img.shields.io/npm/v/youtubeposter.js.svg?maxAge=3600" alt="NPM version" /></a>
+    <a href="https://www.npmjs.com/package/youtubeposter.js"><img src="https://img.shields.io/npm/dt/youtubeposter.js.svg?maxAge=3600" alt="NPM downloads" /></a>
   </p>
   <p>
-    <a href="https://nodei.co/npm/YoutubePoster.js/"><img src="https://nodei.co/npm/YoutubePoster.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
+    <a href="https://nodei.co/npm/youtubeposter.js/"><img src="https://nodei.co/npm/youtubeposter.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
   </p>
 </div>
 
@@ -17,11 +17,11 @@
 
 ## **Installation** 
 ```sh
-npm install YoutubePoster.js@latest
+npm install youtubeposter.js@latest
 ```
 
 ```js
-const YT = require("YoutubePoster.js");
+const YT = require("youtubeposter.js");
 //Suggesting to require it once the bot is online, to reduce bugs...
 client.on("ready", () => client.YTP = new YT.YoutubePoster());
 //Send message or data
