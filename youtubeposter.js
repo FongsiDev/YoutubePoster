@@ -45,7 +45,7 @@ class YoutubePoster extends EventEmitter {
   constructor(options = {}) {
     super();
     this.options = {
-      loop_delays_in_min: 5,
+      loop_delays_in_min: 5000,
       message:
         "**{authorname}** Posted: **{videotitle}**, as `{videoauthorname}`\n{videourl}",
     };
@@ -63,7 +63,7 @@ class YoutubePoster extends EventEmitter {
       throw new Error("(YTP.options.loop_delays_in_min) is not a Number");
     setInterval(() => {
       this.check();
-    }, 3000);
+    }, this.options.loop_delays_in_min || 5000);
   }
   /** Check the Videos, and if there is a valid video or not
    * @param
