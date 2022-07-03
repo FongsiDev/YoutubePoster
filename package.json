@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/fongsidev/YoutubePoster#readme",
   "dependencies": {
+    "@bochilteam/scraper": "^2.0.0",
     "axios": "^0.21.1",
     "colors": "^1.4.0",
     "cron": "^1.8.2",

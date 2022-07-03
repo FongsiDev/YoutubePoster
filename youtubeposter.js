@@ -33,6 +33,7 @@ const Parser = require("rss-parser");
 const rss = require("rss-converter");
 const parser = new Parser();
 const EventEmitter = require("events");
+const { youtubeSearch } = require("@bochilteam/scraper");
 const Enmap = require("enmap");
 const colors = require("colors");
 const Util = require("./lib/Util.js");
@@ -53,7 +54,7 @@ class YoutubePoster extends EventEmitter {
     this.info_log = `[INFO] `.cyan;
     this.success_log = `[SUCCESS] `.green;
     this.YTP_DB = new Enmap({ name: "Youtube-Poster" });
-      if (
+    if (
       (!this.options.loop_delays_in_min || !this.options.loop_delays_in_min) &&
       this.options.loop_delays_in_min != 0
     )
@@ -61,9 +62,8 @@ class YoutubePoster extends EventEmitter {
     if (typeof this.options.loop_delays_in_min != "number")
       throw new Error("(YTP.options.loop_delays_in_min) is not a Number");
     setInterval(() => {
-      this.check()
-    }, 3000)
-  
+      this.check();
+    }, 3000);
   }
   /** Check the Videos, and if there is a valid video or not
    * @param
@@ -94,62 +94,66 @@ class YoutubePoster extends EventEmitter {
   async check() {
     return new Promise(async (res, rej) => {
       try {
-      //get the Keys
-      var keys = await this.YTP_DB.keyArray();
-      keys.forEach(async (key) => {
-        //get the Channels from the key
-        var allChannels = await this.YTP_DB.get(`${key}`, `channels`);
-        //if no channels defined yet, return
-        if (!allChannels || allChannels.length == 0) return;
-        //loop through all yt channels
-        allChannels.forEach(async (ChannelDATA, index) => {
-          try {
-            //If there is no Channellink return
-            if (!ChannelDATA.YTchannel) return;
-            //get the latest Youtube Channel Information (name, id, etc.)
-            let channelInfos = await this.getChannelInfo(ChannelDATA.YTchannel);
-            //if no channelInfos return
-            if (!channelInfos) return;
-            //get the latest video
-            let video = await this.checkVideos(channelInfos.url, ChannelDATA);
-            //if no video found, return error
-            if (!video) return; //not a latest video posted
-            //send the Message
-            let e = {
-              video,
-              channelInfos,
-              ChannelDATA,
-              msg: replaceContents(
-                ChannelDATA.message,
+        //get the Keys
+        var keys = await this.YTP_DB.keyArray();
+        keys.forEach(async (key) => {
+          //get the Channels from the key
+          var allChannels = await this.YTP_DB.get(`${key}`, `channels`);
+          //if no channels defined yet, return
+          if (!allChannels || allChannels.length == 0) return;
+          //loop through all yt channels
+          allChannels.forEach(async (ChannelDATA, index) => {
+            try {
+              //If there is no Channellink return
+              if (!ChannelDATA.YTchannel) return;
+              //get the latest Youtube Channel Information (name, id, etc.)
+              let channelInfos = await this.getChannelInfo(
+                ChannelDATA.YTchannel
+              );
+              //if no channelInfos return
+              if (!channelInfos) return;
+              //get the latest video
+              let video = await this.checkVideos(channelInfos.url, ChannelDATA);
+              let video_2 = (await youtubeSearch(video.link)).video[0];
+              //if no video found, return error
+              if (!video) return; //not a latest video posted
+              //send the Message
+              let e = {
                 video,
+                video_2: video_2 ? video_2 : null,
                 channelInfos,
-                ChannelDATA
-              ),
-            };
-            await this.emit("notified", e);
-            //set the new old vid to the latest send video
-            ChannelDATA.oldvid = video.id;
-            //push the data in the already sent ones, so it's never repeating again, if a reupload and delete after, etc.
-            ChannelDATA.alrsent.push(video.id);
-            //if the already sent starts to get to big, remove the end of it
-            if (ChannelDATA.alrsent.length > 5) {
-              ChannelDATA.alrsent.pop();
+                ChannelDATA,
+                msg: replaceContents(
+                  ChannelDATA.message,
+                  video,
+                  channelInfos,
+                  ChannelDATA
+                ),
+              };
+              await this.emit("notified", e);
+              //set the new old vid to the latest send video
+              ChannelDATA.oldvid = video.id;
+              //push the data in the already sent ones, so it's never repeating again, if a reupload and delete after, etc.
+              ChannelDATA.alrsent.push(video.id);
+              //if the already sent starts to get to big, remove the end of it
+              if (ChannelDATA.alrsent.length > 5) {
+                ChannelDATA.alrsent.pop();
+              }
+              //replace item in the
+              allChannels[index] = ChannelDATA;
+              //set the new channels
+              await this.YTP_DB.set(
+                `${ChannelDATA.ChannelSend}`,
+                allChannels,
+                `channels`
+              );
+            } catch (e) {
+              console.log(String(e).grey);
             }
-            //replace item in the
-            allChannels[index] = ChannelDATA;
-            //set the new channels
-            await this.YTP_DB.set(
-              `${ChannelDATA.ChannelSend}`,
-              allChannels,
-              `channels`
-            );
-          } catch (e) {
-            console.log(String(e).grey);
-          }
+          });
         });
-      });
       } catch (e) {
-        rej(e)
+        rej(e);
       }
     });
   }
@@ -281,7 +285,7 @@ class YoutubePoster extends EventEmitter {
         let content = await rss.toJson(
           `https://www.youtube.com/feeds/videos.xml?channel_id=${channel.id}`
         );
-  //    console.log(JSON.stringify(content, null, 3))
+        //    console.log(JSON.stringify(content, null, 3))
         content = content.items.map((v) => {
           var OBJ = {};
           OBJ.title = v.title;
