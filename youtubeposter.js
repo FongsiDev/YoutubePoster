@@ -39,6 +39,7 @@ const colors = require("colors");
 const axios = require("axios");
 const Util = require("./lib/Util.js");
 const CI = require("./lib/channelInfo.js");
+const v = require("./package.json");
 const { replaceContents } = require("./lib/Util.js");
 let cooldown = false;
 //======================= Y O U T U B E  P O S T E R =======================
