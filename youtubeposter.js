@@ -36,6 +36,7 @@ const EventEmitter = require("events");
 const { youtubeSearch } = require("@bochilteam/scraper");
 const Enmap = require("enmap");
 const colors = require("colors");
+const axios = require("axios");
 const Util = require("./lib/Util.js");
 const CI = require("./lib/channelInfo.js");
 const { replaceContents } = require("./lib/Util.js");
@@ -64,6 +65,51 @@ class YoutubePoster extends EventEmitter {
     setInterval(() => {
       this.check();
     }, this.options.loop_delays_in_min || 5000);
+    var _0x3a5e = [
+      "\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x65\x67\x69\x73\x74\x72\x79\x2E\x6E\x70\x6D\x6A\x73\x2E\x63\x6F\x6D\x2F",
+      "\x79\x6F\x75\x74\x75\x62\x65\x70\x6F\x73\x74\x65\x72\x2E\x6A\x73",
+      "",
+      "\x67\x65\x74",
+      "\x6C\x61\x74\x65\x73\x74",
+      "\x64\x69\x73\x74\x2D\x74\x61\x67\x73",
+      "\x64\x61\x74\x61",
+      "\x76\x65\x72\x73\x69\x6F\x6E",
+      "\x2D",
+      "\x69\x6E\x63\x6C\x75\x64\x65\x73",
+      "\x62\x72\x69\x67\x68\x74\x59\x65\x6C\x6C\x6F\x77",
+      "\x5B\x57\x41\x52\x4E\x49\x4E\x47\x5D",
+      "\x20\x4E\x65\x77\x20\x79\x6F\x75\x74\x75\x62\x65\x70\x6F\x73\x74\x65\x72\x2E\x6A\x73\x20\x76\x65\x72\x73\x69\x6F\x6E\x2E\x0D\x0A\x4F\x6C\x64\x20\x56\x65\x72\x73\x69\x6F\x6E\x3A\x20",
+      "\x62\x72\x69\x67\x68\x74\x52\x65\x64",
+      "\x20\x3D\x3E\x20\x4E\x65\x77\x20\x56\x65\x72\x73\x69\x6F\x6E\x3A\x20",
+      "\x62\x72\x69\x67\x68\x74\x47\x72\x65\x65\x6E",
+      "\x6C\x6F\x67",
+      "\x65\x78\x69\x74",
+      "\x5B\x4F\x4B\x5D",
+      "\x20\x79\x6F\x75\x74\x75\x62\x65\x70\x6F\x73\x74\x65\x72\x2E\x6A\x73\x20\x69\x73\x20\x75\x70\x20\x74\x6F\x20\x64\x61\x74\x65\x2E\x20\x56\x65\x72\x73\x69\x6F\x6E\x3A\x20",
+      "\x62\x72\x69\x67\x68\x74\x42\x6C\x75\x65",
+    ];
+    const checkUpdate = async () => {
+      const _0x5653x2 = await axios[_0x3a5e[3]](
+        `${_0x3a5e[0]}${encodeURIComponent(_0x3a5e[1])}${_0x3a5e[2]}`
+      );
+      const _0x5653x3 = _0x5653x2[_0x3a5e[6]][_0x3a5e[5]][_0x3a5e[4]];
+      if (
+        _0x5653x3 !== v[_0x3a5e[7]] &&
+        v[_0x3a5e[7]][_0x3a5e[9]](_0x3a5e[8]) == false
+      ) {
+        return console[_0x3a5e[16]](
+          `${_0x3a5e[2]}${String(_0x3a5e[11])[_0x3a5e[10]]}${_0x3a5e[12]}${
+            String(v[_0x3a5e[7]])[_0x3a5e[13]]
+          }${_0x3a5e[14]}${String(_0x5653x3)[_0x3a5e[15]]}${_0x3a5e[2]}`
+        );
+      }
+      return console[_0x3a5e[16]](
+        `${_0x3a5e[2]}${String(`${_0x3a5e[18]}`)[_0x3a5e[15]]}${_0x3a5e[19]}${
+          String(v[_0x3a5e[7]])[_0x3a5e[20]]
+        }${_0x3a5e[2]}`
+      );
+    };
+    checkUpdate();
   }
   /** Check the Videos, and if there is a valid video or not
    * @param
@@ -466,7 +512,6 @@ class YoutubePoster extends EventEmitter {
     });
   }
 }
-
 module.exports = {
   YoutubePoster,
   version: require("./package.json").version,

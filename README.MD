@@ -23,12 +23,11 @@ npm install youtubeposter.js@latest
 ```js
 const YT = require("youtubeposter.js");
 //Suggesting to require it once the bot is online, to reduce bugs...
-client.on("ready", () => client.YTP = new YT.YoutubePoster());
-//Send message or data
-YT.on("notified", data => console.log(data))
-
-//use the methods
-client.YTP.<Method>(<Options>); //returns -> Promise -> <OBJECT/ARRAY -- CHANNEL DATA>
+global.YTP = new YT.YoutubePoster());
+//Send message or data.
+global.YTP.on("notified", data => console.log(data)); //returns -> Promise -> <OBJECT/ARRAY -- Video, Video_2, ChannelDATA, ChannelInfos>
+//use the methods.
+global.YTP.<Method>(<Options>); //returns -> Promise -> <OBJECT/ARRAY -- CHANNEL DATA>
 //The logging is the package doing for you, you just need to use the setChannel() function in order to set the first channel which should get listened to!
 ```
 
