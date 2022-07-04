@@ -44,12 +44,13 @@ const { replaceContents } = require("./lib/Util.js");
 let cooldown = false;
 //======================= Y O U T U B E  P O S T E R =======================
 class YoutubePoster extends EventEmitter {
-  constructor(options = {
+  constructor(options = {}) {
+    super();
+    this.options = options ? options : {
       loop_delays_in_min: 5000,
       message:
         "**{authorname}** Posted: **{videotitle}**, as `{videoauthorname}`\n{videourl}",
-    }) {
-    super();
+    };
     this.ytp_log = ` >-YouTube-Poster-< `.dim.red;
     this.warn_log = `[WARN] `.yellow;
     this.info_log = `[INFO] `.cyan;
