@@ -8,6 +8,9 @@
     "postinstall": "echo YoutubePoster By Fongsi",
     "install": "echo YoutubePoster By Fongsi"
   },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fongsidev/YoutubePoster.git"
