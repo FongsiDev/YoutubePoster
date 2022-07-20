@@ -338,12 +338,15 @@ class YoutubePoster extends EventEmitter {
           OBJ.title = v.title;
           OBJ.link = v.link;
           OBJ.pubDate = v.published;
+          OBJ.pubDateText = Util.timeSince(v.published)
           OBJ.author = v.author;
           OBJ.description = v.media_group.media_description;
           OBJ.thumbnail = v.media_group.media_thumbnail_url;
           OBJ.views = v.media_group.media_community.media_statistics_views;
+          OBJ.viewsText = Util.nFormatter(v.media_group.media_community.media_statistics_views)
           OBJ.id = v.yt_videoId;
           OBJ.isoDate = v.updated;
+          OBJ.isoDateText = Util.timeSince(v.updated)
           return OBJ;
         });
         let tLastVideos = content.sort((a, b) => {
